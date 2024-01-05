@@ -22,7 +22,7 @@ const items = [
         brand:"Air Jordan",
         name:"Air Jordan 4 retro",
         price:"239",
-        image:"images/Jordan4side.jpg",
+        image:"images/jordan4side.jpg",
         image1:"images/jordan4front.jpg",
         image2:"images/jordan4gray.jpg",
         image3:"images/jordan4black.jpg"
