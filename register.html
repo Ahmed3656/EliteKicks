@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <title>EliteKicks</title>
+        <link rel="icon" href="images/logo1.png" type="image/png">
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="css/style.css"/>
+        <link rel="stylesheet" href="css/all.css"/>
+        <link rel="stylesheet" href="bootstrap_css/bootstrap.min.css">
+    </head>
+
+
+    <body>
+
+        <!-- //////////////////////////// header ////////////////////////////// -->
+        <nav class="header navbar navbar-expand-lg navbar-light" style=" background-color: #e9e8e8;">
+            <div class="container-fluid">
+              <img src="images/logo1.png" alt="logo" style="height:60px; margin: -15px 10px;" draggable="false">              
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                  </li>
+                </ul>
+                <!-- <ul class="navbar-nav">
+                    <li class="mr-2"><a class="nav-link active" aria-current="page" href="login.html">Login</a></li>
+                    <li class="mr-2"><a class="nav-link active" aria-current="page" href="register.html">Sign up</a></li>
+                </ul> -->
+              </div>
+            </div>
+        </nav>
+
+        <!-- //////////////////////////// creditentials ////////////////////////////// -->
+        <div class="creds container mt-3">
+          <div class="creditentials m-auto p-3 rounded-3" style="width: 60%; background-color: #e9e8e8;">
+            <h1 style="font-weight: bold; text-align: center;">Sign up</h1>
+              <form style="width: 50%; margin: auto;">
+                <div class="mb-3 d-flex">
+                  <input type="text" class="form-control" id="fname" placeholder="First name">
+                  <input type="text" class="form-control" id="lname" placeholder="Last name">
+                </div>
+                <div class="mb-3">
+                  <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" id="password" placeholder="Enter password">
+                </div>
+                <button type="submit" id="sign_up" class="btn btn-dark" style="width: 50%; transform: translate(50%);">Create account</button>
+                <p style="text-align: center; margin: 10px 0 -5px 0;">Already have an account <a href="login.html">Login</a></p>
+              </form>
+          </div>
+      </div>
+    <script src="js/register.js"></script>
+    <script src="bootsrap_js/bootstrap.min.js"></script>
+    </body>
+</html>

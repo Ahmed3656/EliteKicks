@@ -1,0 +1,77 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family:url(../fonts/Poppins-Black.ttf)!important;
+    perspective: 700px;
+}
+
+@media (max-width:960px){
+    .creds .creditentials{
+        width: 100% !important;
+    }
+}
+
+/*//////////////////////////// header ////////////////////////////*/
+
+.header a {
+    position: relative;
+    font-size: larger;
+    font-weight: 500;
+    color: rgb(68, 68, 68) !important;
+    transition: 0.2s;
+    width: 90px;
+}
+
+.header a:hover {
+    color: black !important;
+    font-weight: 700;
+}
+
+/*//////////////////////////// products ////////////////////////////*/
+
+.productsContainer #add_to_cart {
+    border: none;
+    border-radius: 10px;
+    height: 40%;
+    width: 40%;
+    float: right;
+    color: white;
+    transition: 0.3s;
+}
+
+.productsContainer #add_to_cart:hover {
+    opacity: 0.85;
+}
+
+.productsContainer span{
+    font-size: larger;
+    font-weight: 600;
+}
+
+.productsContainer .mainImgWrapper {
+    position: relative;
+}
+
+.prodCrd {
+    transform-style: preserve-3d;
+}
+
+.productsContainer .imgOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+}
+
+.productsContainer .prodCrd:hover .imgOverlay {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 1s;
+}
