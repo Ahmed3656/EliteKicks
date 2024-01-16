@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 
   <html lang="en">
       <head>
@@ -34,10 +34,8 @@
                   </ul>
                   <ul class="navbar-nav user-info">
                     <li><a href="#" class="nav-link active user-name"></a></li>
-                    <li class="cart">
-                      <span class="ctr" style="display: none;"></span>
-                      <i class="fas fa-shopping-cart"></i>
-                    </li>
+                    <li class="cart"><i class="fas fa-shopping-cart"></i></li>
+                    <span class="ctr" style="display: none;"></span>
                     <div class="cart-products" style="display: none;"></div>
                     <li><a href="#" class="nav-link active">Logout</a></li>
                   </ul>
@@ -45,12 +43,14 @@
               </div>
           </nav>
 
-          <!-- //////////////////////////// products ////////////////////////////// -->
+          <!-- //////////////////////////// cart products ////////////////////////////// -->
+
           <div class="container">
-            <main class="productsContainer my-3 d-flex row m-auto" style="justify-content: space-around;"></main>
+            
           </div>
-          
+
+          <div id="favorites"></div>
       <script src="js/script.js"></script>
       <script src="bootsrap_js/bootstrap.min.js"></script>
-      </body>
+    </body>
   </html>

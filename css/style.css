@@ -9,26 +9,59 @@ body{
     perspective: 700px;
 }
 
-@media (max-width:960px){
-    .creds .creditentials{
+@media (max-width:995px){
+    .creds .credentials{
         width: 100% !important;
+    }
+
+    .header .ctr {
+        top: -4px !important;
+        right: -2px !important;
     }
 }
 
 /*//////////////////////////// header ////////////////////////////*/
 
-.header a {
-    position: relative;
+.header a, .header .cart {
     font-size: larger;
     font-weight: 500;
     color: rgb(68, 68, 68) !important;
     transition: 0.2s;
-    width: 90px;
+    margin: 0 5px;
 }
 
-.header a:hover {
+.header a:hover, .header .cart:hover {
     color: black !important;
-    font-weight: 700;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.header .cart{
+    position: relative;
+    margin-top: 7px;
+}
+
+.header .user-info {
+    display: none;
+}
+
+.header .ctr {
+    position: absolute;
+
+    background-color: #dc3545;
+    color: #ffffff;
+
+    border: 0.5px solid #e9e8e8;
+
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+
+    left: 15px;
+    bottom: 25px;
+
+    text-align: center;
+    font-size: 10px !important;
 }
 
 /*//////////////////////////// products ////////////////////////////*/
@@ -74,4 +107,40 @@ body{
     opacity: 1;
     visibility: visible;
     transition-delay: 1s;
+}
+
+.productsContainer .prodCrd {
+    transition: 0.5s;
+}
+
+.productsContainer .prodCrd:hover {
+    transform:scale(1.05, 1.05);
+}
+
+.productsContainer .mainImgWrapper .icons {
+    position: relative;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    z-index: 2;
+    font-size: 20px;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0 0 5px 0 gray;
+    transform: scale(0.95238, 0.95238);
+}
+
+.productsContainer .mainImgWrapper .favorites {
+    color: rgb(161, 161, 161);
+    font-size: 21px;
+    line-height: 35px;
+}
+
+/*//////////////////////////// cart products ////////////////////////////*/
+
+.cart-products .cartCrd img{
+    
 }
