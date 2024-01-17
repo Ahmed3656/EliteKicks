@@ -141,6 +141,26 @@ body{
 
 /*//////////////////////////// cart products ////////////////////////////*/
 
-.cart-products .cartCrd img{
-    
+@media (min-width:515px) {
+    .cart-prods .cart-prod{
+        min-width: 515px;
+    }
+}
+@media (max-width:515px) {
+    .cart-prods .cart-prod {
+        height: fit-content !important;
+    }
+    .bttn {
+        margin-bottom: 1.5rem;
+    }
+    .cart-prods .cart-prod .image, .cart-prods .cart-prod img  {
+        width: 100%;
+    }
+
+    .cart-prods .cart-prod .image {
+        height: 50% !important;
+    }
+    .cart-prods .cart-prod img  {
+        height: 100% !important;
+    }
 }

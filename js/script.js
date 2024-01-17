@@ -171,20 +171,23 @@ function listItems(){
 }
 
 listItems()
-console.log(window.outerWidth)
-////////////////////////////////////////// cart /////////////////////////////////////////////
+
+////////////////////////////////////////// cart/favs /////////////////////////////////////////////
 
 let cartBtn = document.querySelector(".header .cart")
 let cartProducts = document.querySelector(".header .cart-products")
 let favoriteProducts = document.querySelector("#favorites")
 let ctr = document.querySelector(".header .ctr")
-let itemsTransport = []
+let addedToCart = []
 
 cartBtn.addEventListener("click", ()=>window.location = "cart.html")
 
 function addToCart(id){
   let prod = items.find((item) => item.id == id)
   cartProducts.innerHTML += `<p>${prod.name}</p>`
+
+  addedToCart.push(prod)
+  localStorage.setItem("added", JSON.stringify(addedToCart))
 
   let numOfItems = document.querySelectorAll(".header .cart-products p").length
   if(numOfItems > 0){
