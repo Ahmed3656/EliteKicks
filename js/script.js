@@ -10,12 +10,27 @@ if(localStorage.getItem("fname")){
   userName.innerHTML = localStorage.getItem("fname").charAt(0).toUpperCase() + localStorage.getItem("fname").slice(1)
 }
 
+////////////////////////////////////////// Logout /////////////////////////////////////////////
+
+let logOut = document.querySelector("#logout")
+
+logOut.addEventListener("click", (e) =>{
+  e.preventDefault()
+
+  localStorage.clear()
+
+  setTimeout(()=>{
+    window.location = "login.html"
+  }, 1500)
+})
+
 ////////////////////////////////////////// products /////////////////////////////////////////////
 
 let products = document.querySelector(".productsContainer")
 const items = [
     {
         id:1,
+        qty:0,
         brand:"Air Jordan",
         name:"Air Jordan 11 retro",
         price:"200",
@@ -26,6 +41,7 @@ const items = [
     },
     {
         id:2,
+        qty:0,
         brand:"Nike",
         name:"Dunk low",
         price:"115",
@@ -36,6 +52,7 @@ const items = [
     },
     {
         id:3,
+        qty:0,
         brand:"Air Jordan",
         name:"Air Jordan 4 retro",
         price:"239",
@@ -47,6 +64,7 @@ const items = [
     },
     {
         id:4,
+        qty:0,
         brand:"Adidas",
         name:"Yeezy 350 V2",
         price:"249",
@@ -57,6 +75,7 @@ const items = [
     },
     {
         id:5,
+        qty:0,
         brand:"Air Jordan",
         name:"TRAVIS SCOTT X AIR JORDAN 1 RETRO LOW 'BLACK PHANTOM'",
         price:"547",
@@ -67,6 +86,7 @@ const items = [
     },
     {
       id:6,
+      qty:0,
       brand:"Nike",
       name:"Lebron 14",
       price:"123",
@@ -77,6 +97,7 @@ const items = [
     },
     {
         id:7,
+        qty:0,
         brand:"New Balance",
         name:"9060",
         price:"179",
@@ -87,6 +108,7 @@ const items = [
     },
     {
         id:8,
+        qty:0,
         brand:"Adidas",
         name:"BAD BUNNY X RESPONSE CL",
         price:"162",
@@ -97,6 +119,7 @@ const items = [
     },
     {
         id:9,
+        qty:0,
         brand:"Air Jordan",
         name:"Air Jordan 5",
         price:"299",
@@ -107,6 +130,7 @@ const items = [
     },
     {
         id:10,
+        qty:0,
         brand:"Nike",
         name:"Lebron 11",
         price:"232",
@@ -117,6 +141,7 @@ const items = [
     },
     {
         id:11,
+        qty:0,
         brand:"Adidas",
         name:"Yeezy Foam Runner",
         price:"122",
@@ -173,40 +198,85 @@ function listItems(){
 
 listItems()
 
-////////////////////////////////////////// cart/favs /////////////////////////////////////////////
+////////////////////////////////////////// move to cart /////////////////////////////////////////////
 
 let cartBtn = document.querySelector(".header .cart")
 let cartProducts = document.querySelector(".header .cart-products")
-let favoriteProducts = document.querySelector("#favorites")
 let ctr = document.querySelector(".header .ctr")
-let addedToCart = []
+let emptyCart = document.querySelector(".cartt .empty-cart")
+
+let inStorage = JSON.parse(localStorage.getItem("added"))
+let addedToCart = inStorage ? [...inStorage] : []
+
+let numOfItems = 0
+
+if(inStorage){
+  addedToCart.map((storedItem)=>{
+    numOfItems += storedItem.qty
+  })
+
+  ctr.style.display = "block"
+}
+else{
+  ctr.style.display = "none"
+}
 
 cartBtn.addEventListener("click", ()=>window.location = "cart.html")
 
 function addToCart(id){
-  let prod = items.find((item) => item.id == id)
-  cartProducts.innerHTML += `<p>${prod.name}</p>`
-
-  addedToCart.push(prod)
-  localStorage.setItem("added", JSON.stringify(addedToCart))
-
-  let numOfItems = document.querySelectorAll(".header .cart-products p").length
-  if(numOfItems > 0){
+  if(localStorage.getItem("fname")){
+    let prod = items.find((item) => item.id == id)
+    numOfItems++;
     ctr.innerHTML = numOfItems
     ctr.style.display="block"
-  }else{
-    ctr.style.display="none";
+
+    /////////////////// calculating qty ///////////////////
+    let productIndex = addedToCart.findIndex(product => product.id == id);
+    if(productIndex === -1)
+    {
+      prod.qty++
+      addedToCart.push(prod)
+    }
+    else
+    {
+      addedToCart[productIndex].qty++;
+    }
+    localStorage.setItem("added", JSON.stringify(addedToCart))
+  }
+  else {
+    setTimeout(()=>{
+      window.location = "login.html"
+    },500)
   }
 }
 
-function addToFavorites(id) {
-let heart = document.querySelector(`.icons[data-id="${id}"] .favorites`)
-
-let currentStyle = window.getComputedStyle(heart);
-
-    if (currentStyle.getPropertyValue("color") === "rgb(255, 0, 0)") {
-        heart.style.color = "rgb(161, 161, 161)";
-    } else {
-        heart.style.color = "red";
-    }
+if(numOfItems > 0){
+  ctr.innerHTML = numOfItems
+  ctr.style.display="block"
+}else{
+  ctr.style.display="none";
 }
+
+////////////////////////////////////////// favorites /////////////////////////////////////////////
+
+let favoriteProducts = document.querySelector("#favorites")
+
+function addToFavorites(id) {
+  if(localStorage.getItem("fname")){
+    let heart = document.querySelector(`.icons[data-id="${id}"] .favorites`)
+
+    let currentStyle = window.getComputedStyle(heart);
+
+      if (currentStyle.getPropertyValue("color") === "rgb(255, 0, 0)") {
+        heart.style.color = "rgb(161, 161, 161)";
+      } else {
+        heart.style.color = "red";
+      }
+  }
+  else {
+    setTimeout(()=>{
+      window.location = "login.html"
+    },500)
+  }
+}
+

@@ -39,7 +39,7 @@
                     <i class="fas fa-shopping-cart"></i>
                   </li>
                   <div class="cart-products" style="display: none;"></div>
-                  <li><a href="#" class="nav-link active">Logout</a></li>
+                  <li><a href="#" id="logout" class="nav-link active">Logout</a></li>
                 </ul>
               </div>
             </div>
@@ -48,10 +48,20 @@
           <!-- //////////////////////////// cart products ////////////////////////////// -->
 
           <div class="container-fluid">
-            <div class="cart-prods d-flex row m-auto" style="justify-content:space-evenly;"></div>
+            <div class="cartt">
+              <div class="cart-prods d-flex row m-auto" style="justify-content:space-evenly;"></div>
+              <p id="total" class="text-center fs-2" style="font-weight: 500;"></p>
+              <p class="empty-cart text-center fw-bold fs-1">Your cart is empty</p>
+            </div>
           </div>
 
-          <div id="favorites"></div>
+
+
+          <hr>
+          <div id="favorites">
+            <h2 class="line-title text-center">Favorites</h2>
+            <span class="line"></span>
+          </div>
 
           <script src="js/cart.js"></script>
       <script src="js/script.js"></script>
