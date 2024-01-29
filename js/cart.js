@@ -37,13 +37,14 @@ function listCartItems(prods){
 ////////////////////////////////////////// cart functions /////////////////////////////////////////////
 
 function removeItem(id) {
-  let products = JSON.parse(cartProds)
+  let products = JSON.parse(localStorage.getItem("added")) || []
 
   let updatedProds = products.filter(item => item.id !== id)
   localStorage.setItem("added", JSON.stringify(updatedProds))
 
-  setTimeout(() =>{
-    location.reload()}, 500)
+      listCartItems(updatedProds);
+      calculateTotal(updatedProds);
+      updateCounter(updatedProds); 
 }
 
 function calculateTotal(items) {
@@ -70,13 +71,41 @@ function more(id) {
   let arr = JSON.parse(localStorage.getItem("added")) || []
 
   let itemIdx = arr.findIndex(item => item.id == id)
-  console.log(itemIdx)
+
   arr[itemIdx].qty++;
   localStorage.setItem("added", JSON.stringify(arr))
+
+  listCartItems(arr);
+  calculateTotal(arr);
+  updateCounter(arr);
 }
 
 function less(id) {
-  console.log("sub" + id)
+  let arr = JSON.parse(localStorage.getItem("added")) || []
+
+  let itemIdx = arr.findIndex(item => item.id == id)
+
+  if(--arr[itemIdx].qty === 0) removeItem(id)
+  else{
+    localStorage.setItem("added", JSON.stringify(arr))
+
+    listCartItems(arr);
+    calculateTotal(arr);
+    updateCounter(arr);
+  }
+}
+
+function updateCounter(items) {
+  let total = 0;
+
+  items.map((item) => total += item.qty);
+
+  if (total > 0) {
+    cnt.innerHTML = total;
+    cnt.style.display = "block";
+  } else {
+    cnt.style.display = "none";
+  }
 }
 
 ////////////////////////////////////////// listing items /////////////////////////////////////////////
