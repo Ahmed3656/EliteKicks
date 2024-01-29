@@ -152,8 +152,8 @@ const items = [
     }
 ]
 
-function listItems(){
-    let product = items.map((item) => {
+function listItems(prods){
+    let product = prods.map((item) => {
         return `
         <div class="prodCrd card col-md-3 my-2" style="width: 19rem; background-color: #e9e8e8;">
         <div class="mainImgWrapper">
@@ -196,7 +196,7 @@ function listItems(){
     products.innerHTML = product.join('');
 }
 
-listItems()
+listItems(items)
 
 ////////////////////////////////////////// move to cart /////////////////////////////////////////////
 
@@ -226,6 +226,7 @@ cartBtn.addEventListener("click", ()=>window.location = "cart.html")
 function addToCart(id){
   if(localStorage.getItem("fname")){
     let prod = items.find((item) => item.id == id)
+    if(id === 5) prod.name = prod.name.slice(0,13)
     numOfItems++;
     ctr.innerHTML = numOfItems
     ctr.style.display="block"
@@ -242,6 +243,8 @@ function addToCart(id){
       addedToCart[productIndex].qty++;
     }
     localStorage.setItem("added", JSON.stringify(addedToCart))
+
+    showNotification("Item added to the cart!");
   }
   else {
     setTimeout(()=>{
@@ -280,3 +283,44 @@ function addToFavorites(id) {
   }
 }
 
+////////////////////////////////////////// search /////////////////////////////////////////////
+
+let searchChoice = document.querySelector("#searches")
+let searchInput = document.querySelector("#search-input")
+
+searchInput.addEventListener("input", function() {
+
+  if(searchInput.value !== ""){
+    if(searchChoice.value === "brand"){
+      let arr = items.filter((item)=> item.brand.toLowerCase().includes(searchInput.value.toLowerCase()))
+      
+      listItems(arr)
+    }
+    else if(searchChoice.value === "name"){
+      let arr = items.filter((item)=> item.name.toLowerCase().includes(searchInput.value.toLowerCase()))
+      
+      listItems(arr)
+    }
+  }else {
+    listItems(items)
+  }
+})
+
+function showNotification(message) {
+  const notification = document.getElementById("notification");
+
+  notification.innerHTML = message;
+  notification.style.opacity = 1;
+
+  window.addEventListener("scroll", updateNotificationPosition);
+
+  setTimeout(() => {
+    notification.style.opacity = 0;
+  }, 2000);
+}
+
+function updateNotificationPosition() {
+  const notification = document.getElementById("notification");
+  var scrollPosition = window.scrollY + 100;
+  notification.style.top = scrollPosition + "px";
+}

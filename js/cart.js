@@ -7,11 +7,13 @@ let totalText = document.querySelector("#total")
 
 function listCartItems(prods){
     let products = prods.map((prod) => {
-        return`<div class="cart-prod my-3 rounded col-lg-5 col-md-12" style="background-color: #e9e8e8; height: 175px;">
+        return`<div class="cart-prod my-3 rounded col-lg-5 col-md-12" style="position: relative; background-color: #e9e8e8; height: 175px;">
         <div class="image d-inline" style="float: left;"><img src="${prod.image}" class="img-fluid my-3 rounded" alt="" style="height: 143px;" draggable="false"></div>
         
+        <i class="fas fa-bookmark" title="Save for later" style="position: absolute; top: 0; right: 8px; cursor: pointer; font-size: 20px;"></i>
+
         <div class="cart-info mt-3" style="float: left; padding-left: 1.5rem;">
-          <h4>${prod.name.toUpperCase().slice(0,28)}</h4>
+          <h4>${prod.name.toUpperCase().slice(0,21)}</h4>
           <p class="card-text small text-muted">${prod.brand}</p>
           <h5 class="card-text">$${prod.price}</h5>
 
@@ -54,7 +56,7 @@ function calculateTotal(items) {
     total += (item.price * item.qty)
   })
 
-  totalText.innerHTML = `Total: ${total}`;
+  totalText.innerHTML = `Total: ${total}<small>$</small>`;
 }
 
 function numberOfItems(items) {
