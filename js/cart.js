@@ -10,7 +10,7 @@ function listCartItems(prods){
         return`<div class="cart-prod my-3 rounded col-lg-5 col-md-12" style="position: relative; background-color: #e9e8e8; height: 175px;">
         <div class="image d-inline" style="float: left;"><img src="${prod.image}" class="img-fluid my-3 rounded" alt="" style="height: 143px;" draggable="false"></div>
         
-        <i class="fas fa-bookmark" title="Save for later" style="position: absolute; top: 0; right: 8px; cursor: pointer; font-size: 20px;"></i>
+        <i class="fas fa-bookmark" onClick="saveForLater(${prod.id})" title="Save for later" style="position: absolute; top: 0; right: 8px; cursor: pointer; font-size: 20px;"></i>
 
         <div class="cart-info mt-3" style="float: left; padding-left: 1.5rem;">
           <h4>${prod.name.toUpperCase().slice(0,21)}</h4>
@@ -125,4 +125,103 @@ if(cartProds){
   }else{
       cnt.style.display="none";
   }
+}
+
+////////////////////////////////////////// save for later /////////////////////////////////////////////
+
+let savedContainer = document.getElementById("saved4later")
+let savedForLater = JSON.parse(localStorage.getItem("storedSaves")) || []
+
+function listSavedForLater(saves) {
+  let savedItems = saves.map((item) => {
+    return `
+    <div class="swiper-slide">
+      <div class="card col-md-4 m-auto" style="width: 18rem; background-color: #e9e8e8;">
+      <img src="${item.image}" class="card-img m-auto" alt="..." style="width: 90%;" draggable="false">
+      <div class="card-body">
+        <p class="card-text"><small>${item.brand}</small></p>
+        <h4 class="card-title">${item.name}</h4>
+        <p class="card-text fw-bold">Price: $${item.price}</p>
+        <div class="btns d-flex justify-content-between">
+          <a href="#" class="btn btn-primary col-md-5" onClick="moveToCart(${item.id})">Add to cart</a>
+          <a href="#" class="btn btn-danger col-md-5" onClick="deleteItem(${item.id})">Delete</a>
+        </div>
+      </div>
+    </div> 
+  </div>`
+  })
+
+  savedContainer.innerHTML = savedItems.join('');
+}
+
+listSavedForLater(savedForLater)
+
+
+function saveForLater(id) {
+  let arr =JSON.parse(localStorage.getItem("added"))
+  let arr1 =JSON.parse(localStorage.getItem("storedSaves")) || []
+
+  let index = arr.findIndex((item1) => item1.id === id)
+
+  arr[index].qty = 0;
+  let item = arr[index]
+
+  let check = arr1.findIndex((item1) => item1.id === id)
+
+  if(check === -1){
+    if(item.id === 8){
+      item.name = item.name.slice(0,10)
+    }
+    arr1.push(item)
+    localStorage.setItem("storedSaves", JSON.stringify(arr1))
+    location.reload()
+    listSavedForLater(arr1)
+  }
+  else {
+    removeItem(id)
+  }
+
+  let x = arr.filter((item1) => item1.id !== id)
+  
+  listCartItems(x);
+  calculateTotal(x);
+  updateCounter(x);
+
+  localStorage.setItem("added", JSON.stringify(x))
+}
+
+function moveToCart(id) {
+  let arr = JSON.parse(localStorage.getItem("added"))
+  let arr1 =JSON.parse(localStorage.getItem("storedSaves"))
+
+  let item = arr1.find((item1) => item1.id === id)
+
+  let check = arr.findIndex((item1) => item1.id === item.id)
+
+  if(check === -1){
+    item.qty = 1
+    arr.push(item)
+  }
+  else {
+    arr[check].qty++
+  }
+  localStorage.setItem("added", JSON.stringify(arr))
+
+  listCartItems(arr);
+  calculateTotal(arr);
+  updateCounter(arr);
+
+  let x = arr1.filter((item1) => item1.id !== id)
+  localStorage.setItem("storedSaves", JSON.stringify(x))
+  location.reload()
+  listSavedForLater(x)
+}
+
+function deleteItem(id) {
+  let arr =JSON.parse(localStorage.getItem("storedSaves"))
+
+  let x = arr.filter((item1) => item1.id !== id)
+  localStorage.setItem("storedSaves", JSON.stringify(x))
+  location.reload()
+  listSavedForLater(x)
 }

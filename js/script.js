@@ -165,7 +165,7 @@ function listItems(prods){
           <img src="${item.image}" class="mainImg card-img-top" alt="..." draggable="false">
 
           <div class="imgOverlay">
-            <div id="carouselSlides" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <div id="carouselSlides" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000">
               <div class="carousel-inner">
 
                 <div class="carousel-item active">
@@ -260,20 +260,56 @@ if(numOfItems > 0){
   ctr.style.display="none";
 }
 
+function showNotification(message) {
+  const notification = document.getElementById("notification");
+
+  notification.innerHTML = message;
+  notification.style.opacity = 1;
+
+  window.addEventListener("scroll", updateNotificationPosition);
+
+  setTimeout(() => {
+    notification.style.opacity = 0;
+  }, 2000);
+
+  setTimeout(() => {
+  }, 2500);
+}
+
+function updateNotificationPosition() {
+  const notification = document.getElementById("notification");
+  var scrollPosition = window.scrollY + 100;
+  notification.style.top = scrollPosition + "px";
+}
+
 ////////////////////////////////////////// favorites /////////////////////////////////////////////
 
 let favoriteProducts = document.querySelector("#favorites")
+let savedFavs = JSON.parse(localStorage.getItem("favorites"))
+let favorites = savedFavs ? [...savedFavs] : []
+
+if(savedFavs) {
+  savedFavs.map((item) => {
+    let heart = document.querySelector(`.icons[data-id="${item.id}"] .favorites`)
+    heart.style.color = "red"
+  })
+}
 
 function addToFavorites(id) {
   if(localStorage.getItem("fname")){
+    let prod = items.find((item) => item.id == id)
     let heart = document.querySelector(`.icons[data-id="${id}"] .favorites`)
 
     let currentStyle = window.getComputedStyle(heart);
 
       if (currentStyle.getPropertyValue("color") === "rgb(255, 0, 0)") {
         heart.style.color = "rgb(161, 161, 161)";
+        favorites = favorites.filter((item) => item.id != id)
+        localStorage.setItem("favorites", JSON.stringify(favorites))
       } else {
         heart.style.color = "red";
+        favorites.push(prod)
+        localStorage.setItem("favorites", JSON.stringify(favorites))
       }
   }
   else {
@@ -305,22 +341,3 @@ searchInput.addEventListener("input", function() {
     listItems(items)
   }
 })
-
-function showNotification(message) {
-  const notification = document.getElementById("notification");
-
-  notification.innerHTML = message;
-  notification.style.opacity = 1;
-
-  window.addEventListener("scroll", updateNotificationPosition);
-
-  setTimeout(() => {
-    notification.style.opacity = 0;
-  }, 2000);
-}
-
-function updateNotificationPosition() {
-  const notification = document.getElementById("notification");
-  var scrollPosition = window.scrollY + 100;
-  notification.style.top = scrollPosition + "px";
-}

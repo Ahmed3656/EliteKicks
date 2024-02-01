@@ -10,6 +10,7 @@
           <link rel="stylesheet" href="css/style.css"/>
           <link rel="stylesheet" href="css/all.css"/>
           <link rel="stylesheet" href="bootstrap_css/bootstrap.min.css">
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
       </head>
 
 
@@ -33,7 +34,7 @@
                     <li class="mr-2"><a class="nav-link active" aria-current="page" href="register.html">Sign up</a></li>
                 </ul>
                 <ul class="navbar-nav user-info">
-                  <li><a href="#" class="nav-link active user-name"></a></li>
+                  <li><a href="profile.html" class="nav-link active user-name"></a></li>
                   <li class="cart">
                     <span class="ctr" style="display: none;"></span>
                     <i class="fas fa-shopping-cart"></i>
@@ -58,17 +59,38 @@
 
 
           <hr>
-          <div id="favorites">
-            <h2 class="line-title text-center">Favorites</h2>
+          <div>
+            <h2 class="line-title text-center">Saved For Later</h2>
             <span class="line"></span>
+
+
+
+            <div class="swiper mySwiper container" style="margin: 50px auto;">
+              <div id="saved4later" class="swiper-wrapper"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+
           </div>
 
       <script src="js/cart.js"></script>
       <script src="js/script.js"></script>
-      <script src="bootsrap_js/bootstrap.min.js"></script>
+      <script src="bootstrap_js/bootstrap.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-
+      <script>
+        const isSmallScreen = window.matchMedia("(max-width: 991px)").matches
+  
+        let swiper = new Swiper(".mySwiper", {
+      slidesPerView: isSmallScreen ? 1 : 3,
+      spaceBetween: isSmallScreen ? 5 : 30,
+      freeMode: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+      </script>
     </body>
   </html>

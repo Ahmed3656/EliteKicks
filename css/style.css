@@ -11,7 +11,7 @@ body{
 
 .line {
     display: block;
-    width: 40px;
+    width: 70px;
     height: 3px;
     background-color: #212529;
     margin: auto;
@@ -21,7 +21,7 @@ body{
 }
 
 .line-title:hover + .line {
-    width: 70px;
+    width: 120px;
 }
 
 @media (max-width:995px){
@@ -60,7 +60,7 @@ body{
     display: none;
 }
 
-.header .ctr {
+.header .ctr, header .counter {
     position: absolute;
 
     background-color: #dc3545;
@@ -81,7 +81,7 @@ body{
 
 /*//////////////////////////// products ////////////////////////////*/
 
-.productsContainer #add_to_cart {
+.productsContainer #add_to_cart, #favs-container #add_to_cart {
     border: none;
     border-radius: 10px;
     height: 40%;
@@ -100,7 +100,7 @@ body{
     font-weight: 600;
 }
 
-.productsContainer .mainImgWrapper {
+.productsContainer .mainImgWrapper, #favs-container .mainImgWrapper {
     position: relative;
 }
 
@@ -132,7 +132,7 @@ body{
     transform:scale(1.05, 1.05);
 }
 
-.productsContainer .mainImgWrapper .icons {
+.productsContainer .mainImgWrapper .icons, #favs-container .mainImgWrapper .icons {
     position: relative;
     position: absolute;
     right: 5px;
@@ -152,6 +152,25 @@ body{
     color: rgb(161, 161, 161);
     font-size: 21px;
     line-height: 35px;
+}
+
+#favs-container .mainImgWrapper .favorites {
+    font-size: 21px;
+    line-height: 35px;
+}
+
+#notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    padding: 10px;
+    background-color: #4CAF50;
+    user-select: none;
+    color: white;
+    border-radius: 5px;
+    z-index: 10;
+    opacity: 0;
+    transition: 0.5s ease-in-out;
 }
 
 /*//////////////////////////// cart products ////////////////////////////*/
@@ -196,16 +215,42 @@ body{
     display: none;
 }
 
-#notification {
-    position: fixed;
-    top: 100px;
-    right: 20px;
-    padding: 10px;
-    background-color: #4CAF50;
-    user-select: none;
-    color: white;
-    border-radius: 5px;
-    z-index: 10;
-    opacity: 0;
-    transition: 0.5s ease-in-out;
+/*//////////////////////////// profile ////////////////////////////*/
+
+.profile div {
+    margin: 20px 0;
+    padding: 10px 20px;
+
+    border: 1px solid #D5D9D9;
+    border-radius: 8px;
+
+    text-align: center;
+    cursor: pointer;
 }
+
+.profile div:hover {
+    background-color: #eee;
+}
+
+
+
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
