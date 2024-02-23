@@ -24,8 +24,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    
                     <li class="nav-item">
-                      <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                      <a class="nav-link active" aria-current="page" href="products.html">Products</a>
                     </li>
                   </ul>
                   <ul class="navbar-nav signed-out">
@@ -34,10 +35,6 @@
                   </ul>
                   <ul class="navbar-nav user-info">
                     <li><a href="profile.html" class="nav-link active user-name"></a></li>
-                    <li class="cart">
-                      <span class="ctr" style="display: none;"></span>
-                      <i class="fas fa-shopping-cart"></i>
-                    </li>
                     <div class="cart-products" style="display: none;"></div>
                     <li><a href="#" id="logout" class="nav-link active">Logout</a></li>
                   </ul>
@@ -45,31 +42,84 @@
               </div>
           </nav>
 
-          <!-- //////////////////////////// search ////////////////////////////// -->
+          <!-- //////////////////////////// main body ////////////////////////////// -->
+          
+          <div class="mainbody">
+            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="images/banner1.webp" class="d-block w-100" alt="banner1">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/banner2.webp" class="d-block w-100" alt="banner2">
+                </div>
+                <div class="carousel-item">
+                  <img src="images/banner3.webp" class="d-block w-100" alt="banner3">
+                </div>
+              </div>
+            </div> <!-- /carousel -->
 
-          <div id="notification"></div>
+            <h3 class="text-center my-3">Trending Now</h3>
+            <div class="trending container m-auto mb-3 d-flex row justify-content-around"></div>
+            <hr class="my-3">
 
-          <div class="search container-fluid d-flex pt-3 pb-1 justify-content-center">
-            <div class="dropdown col-md-5">
-              <select name="searches" id="searches" style="width: 98%; height: 30px;">
-                <option value="brand">Search by brand</option>
-                <option value="name">Search by name</option>
-              </select>
+            <h3 class="text-center my-3">Our Collections</h3>
+            <div class="collection-container container d-flex row justify-content-around m-auto mb-3">
+              <div class="collection-div col-md-4 col-sm-12 col-12 my-3" ><img src="images/collection2.webp" style="width: 100%;"></div>
+              <div class="collection-div col-md-4 col-sm-12 col-12 my-3" ><img src="images/collection1.jpg" style="width: 100%;"></div>
+              <div class="collection-div col-md-4 col-sm-12 col-12 my-3" ><img src="images/collection3.png" style="width: 100%;"></div>
+            </div> <!-- /collection-container -->
+
+            <div class="perks" style="background-color: #e9e8e8; margin: 20px 0;">
+              <div class="perks-container container d-flex row justify-content-around text-center m-auto">
+                <div style="border: 1px solid #888; margin: 30px 1%; padding: 15px; width: 23%;">
+                  <i style="font-size: 40px; margin-bottom: 10px;" class="far fa-credit-card"></i>
+                  <h2>Safe and Secure Payments</h2>
+                  <p>Encrypted SSL secure checkout</p>
+                </div>
+                <div style="border: 1px solid #888; margin: 30px 1%; padding: 15px; width: 23%;">
+                  <i style="font-size: 40px; margin-bottom: 10px;" class="fas fa-shipping-fast"></i>
+                  <h2>Fast and Free Shipping</h2>
+                  <p>Free shipping on orders above $99</p>
+                </div>
+                <div style="border: 1px solid #888; margin: 30px 1%; padding: 15px; width: 23%;">
+                  <i style="font-size: 40px; margin-bottom: 10px;" class="fas fa-undo"></i>
+                  <h2>Free Returns on Any Order</h2>
+                  <p>Need to send something back or make an exchange? It's free</p>
+                </div>
+                <div style="border: 1px solid #888; margin: 30px 1%; padding: 15px; width: 23%;">
+                  <i style="font-size: 40px; margin-bottom: 10px;" class="fas fa-tags"></i>
+                  <h2>New Deals Every Week</h2>
+                  <p>Check out our latest deals and promotions</p>
+                </div>
+              </div>
+            </div> <!-- /perks -->
+
+            <div class="subscribe bg-dark" style="padding: 60px 0;">
+              <div class="subscribe-container container m-auto text-center text-light">
+                <h2>Subscribe Now</h2>
+                <p>Stay in the loop with exclusive deals and promotions by subscribing today</p>
+                <div class="subscribe-email d-flex justify-content-center">
+                  <input type="email" placeholder="Enter you email" >
+                  <button>Submit</button>
+                </div>
+              </div>
+            </div> <!-- /subscribe -->
+          </div> <!-- /mainbody -->
+
+          <!-- //////////////////////////// footer ////////////////////////////// -->
+
+          <footer class="d-flex flex-column align-items-center" style="background-color: #000; height: 300px; width: 100%;">
+            <div style="height: 100%;">
+              <img src="images/logo1.png" style="height: 100%;">
             </div>
-            <div class="col-md-5">
-              <form>
-                <input id="search-input" type="text" placeholder="Search here" style="width: 98%; height: 30px;">
-              </form>
+            <div>
+              <p class="text-light" style="margin-top: -40px;">&copy 2024 Elite Kicks All Rights Reserved</p>
             </div>
-          </div>
-          <hr>
-
-          <!-- //////////////////////////// products ////////////////////////////// -->
-          <div class="container">
-            <main class="productsContainer my-3 d-flex row m-auto" style="justify-content: space-around;"></main>
-          </div>
+          </footer>
           
       <script src="js/script.js"></script>
+      <script src="js/home.js"></script>
       <script src="bootstrap_js/bootstrap.min.js"></script>
       </body>
   </html>
